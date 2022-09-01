@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { DeleteOutline } from "@mui/icons-material";
 
-export default function UserList() {
+const UserList = () => {
   const [data, setData] = useState(userRows);
 
   const handleDelete = (id) => {
@@ -64,9 +64,12 @@ export default function UserList() {
         rows={data}
         disableSelectionOnClick
         columns={columns}
-        pageSize={8}
+        pageSize={5}
+        rowsPerPageOptions={[5]}
         checkboxSelection
       />
     </div>
   );
-}
+};
+
+export default UserList;

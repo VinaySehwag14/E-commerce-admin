@@ -1,12 +1,12 @@
 import "./productList.css";
 import { DataGrid } from "@mui/x-data-grid";
 import { DeleteOutline } from "@mui/icons-material";
-import { Link } from "react-router-dom";
+import { BrowserRouter, Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteProduct, getProducts } from "../../redux/apiCalls";
 
-export default function ProductList() {
+const ProductList = () => {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.product.products);
 
@@ -15,7 +15,8 @@ export default function ProductList() {
   }, [dispatch]);
 
   const handleDelete = (id) => {
-    deleteProduct(id, dispatch);
+    console.log(id, "productLIst");
+    deleteProduct(dispatch, id);
   };
 
   const columns = [
@@ -34,6 +35,7 @@ export default function ProductList() {
       },
     },
     { field: "inStock", headerName: "Stock", width: 200 },
+
     {
       field: "price",
       headerName: "Price",
@@ -71,4 +73,6 @@ export default function ProductList() {
       />
     </div>
   );
-}
+};
+
+export default ProductList;

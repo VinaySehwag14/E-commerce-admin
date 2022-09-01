@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import { useEffect, useMemo, useState } from "react";
 import { userRequest } from "../../requestMethods";
 
-export default function Product() {
+const Product = () => {
   const location = useLocation();
   const productId = location.pathname.split("/")[2];
   const [pStats, setPStats] = useState([]);
@@ -116,4 +116,6 @@ export default function Product() {
       </div>
     </div>
   );
-}
+};
+
+export default Product;

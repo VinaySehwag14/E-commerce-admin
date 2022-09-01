@@ -9,7 +9,7 @@ import {
 import { Link } from "react-router-dom";
 import "./user.css";
 
-export default function User() {
+const User = () => {
   return (
     <div className="user">
       <div className="userTitleContainer">
@@ -120,4 +120,6 @@ export default function User() {
       </div>
     </div>
   );
-}
+};
+
+export default User;

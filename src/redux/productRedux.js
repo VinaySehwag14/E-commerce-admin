@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-
-export const productSlice = createSlice({
+const productSlice = createSlice({
   name: "product",
   initialState: {
     products: [],
@@ -8,7 +7,7 @@ export const productSlice = createSlice({
     error: false,
   },
   reducers: {
-    //GET ALL
+    //* Get All
     getProductStart: (state) => {
       state.isFetching = true;
       state.error = false;
@@ -16,12 +15,14 @@ export const productSlice = createSlice({
     getProductSuccess: (state, action) => {
       state.isFetching = false;
       state.products = action.payload;
+      state.error = false;
     },
     getProductFailure: (state) => {
       state.isFetching = false;
       state.error = true;
     },
-    //DELETE
+    //*DELETE product
+
     deleteProductStart: (state) => {
       state.isFetching = true;
       state.error = false;
@@ -37,7 +38,8 @@ export const productSlice = createSlice({
       state.isFetching = false;
       state.error = true;
     },
-    //UPDATE
+
+    //*UPDATE
     updateProductStart: (state) => {
       state.isFetching = true;
       state.error = false;
@@ -52,7 +54,7 @@ export const productSlice = createSlice({
       state.isFetching = false;
       state.error = true;
     },
-    //UPDATE
+    //*UPDATE
     addProductStart: (state) => {
       state.isFetching = true;
       state.error = false;
@@ -82,5 +84,4 @@ export const {
   addProductSuccess,
   addProductFailure,
 } = productSlice.actions;
-
 export default productSlice.reducer;

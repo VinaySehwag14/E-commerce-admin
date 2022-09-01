@@ -1,20 +1,21 @@
 import { loginFailure, loginStart, loginSuccess } from "./userRedux";
 import { publicRequest, userRequest } from "../requestMethods";
 import {
-  getProductFailure,
-  getProductStart,
-  getProductSuccess,
-  deleteProductFailure,
-  deleteProductStart,
-  deleteProductSuccess,
-  updateProductFailure,
-  updateProductStart,
-  updateProductSuccess,
   addProductFailure,
   addProductStart,
   addProductSuccess,
+  deleteProductFailure,
+  deleteProductStart,
+  deleteProductSuccess,
+  getProductFailure,
+  getProductStart,
+  getProductSuccess,
+  updateProductFailure,
+  updateProductStart,
+  updateProductSuccess,
 } from "./productRedux";
 
+//* user
 export const login = async (dispatch, user) => {
   dispatch(loginStart());
   try {
@@ -25,6 +26,7 @@ export const login = async (dispatch, user) => {
   }
 };
 
+// //* products
 export const getProducts = async (dispatch) => {
   dispatch(getProductStart());
   try {
@@ -35,10 +37,11 @@ export const getProducts = async (dispatch) => {
   }
 };
 
-export const deleteProduct = async (id, dispatch) => {
+export const deleteProduct = async (dispatch, id) => {
   dispatch(deleteProductStart());
   try {
-    // const res = await userRequest.delete(`/products/${id}`);
+    //! uncomment if you want to delete product from database and vice versa
+    await userRequest.delete(`/products/${id}`);
     dispatch(deleteProductSuccess(id));
   } catch (err) {
     dispatch(deleteProductFailure());
