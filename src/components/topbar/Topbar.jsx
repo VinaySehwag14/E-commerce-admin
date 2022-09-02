@@ -7,7 +7,7 @@ export default function Topbar() {
     <div className="topbar">
       <div className="topbarWrapper">
         <div className="topLeft">
-          <span className="logo">lamaadmin</span>
+          <span className="logo">Admin</span>
         </div>
         <div className="topRight">
           <div className="topbarIconContainer">
@@ -22,7 +22,7 @@ export default function Topbar() {
             <Settings />
           </div>
           <img
-            src="https://images.pexels.com/photos/1526814/pexels-photo-1526814.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+            src="https://images.pexels.com/photos/13394510/pexels-photo-13394510.jpeg?auto=compress&cs=tinysrgb&w=400&lazy=load"
             alt=""
             className="topAvatar"
           />
