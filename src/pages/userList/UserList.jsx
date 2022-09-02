@@ -4,6 +4,8 @@ import { userRows } from "../../dummyData";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { DeleteOutline } from "@mui/icons-material";
+// import { useDispatch, useSelector } from "react-redux";
+// import { deleteProduct, getUser } from "../../redux/apiCalls";
 
 const UserList = () => {
   const [data, setData] = useState(userRows);

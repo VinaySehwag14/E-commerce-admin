@@ -20,6 +20,8 @@ const Login = () => {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
+        background:
+          'linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url("https://images.pexels.com/photos/6984650/pexels-photo-6984650.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940") center',
       }}
     >
       <input
@@ -34,7 +36,7 @@ const Login = () => {
         placeholder="password"
         onChange={(e) => setPassword(e.target.value)}
       />
-      <button onClick={handleClick} style={{ padding: 10, width:100 }}>
+      <button onClick={handleClick} style={{ padding: 10, width: 100 }}>
         Login
       </button>
     </div>
