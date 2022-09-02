@@ -54,6 +54,7 @@ function App() {
             </div>
           </>
         )}
+        {!admin && <Redirect to="/login" />}
       </Switch>
     </Router>
   );
