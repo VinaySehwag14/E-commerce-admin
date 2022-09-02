@@ -7,24 +7,27 @@ import {
   getDownloadURL,
 } from "firebase/storage";
 import app from "../../firebase";
-// import { addProduct } from "../../redux/apiCalls";
-// import { useDispatch } from "react-redux";
+import { addProduct } from "../../redux/apiCalls";
+import { useDispatch } from "react-redux";
 
 export default function NewProduct() {
   const [inputs, setInputs] = useState({});
   const [file, setFile] = useState(null);
   const [cat, setCat] = useState([]);
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     setInputs((prev) => {
       return { ...prev, [e.target.name]: e.target.value };
     });
   };
+
+  //* uses split method to get category after and before ","
   const handleCat = (e) => {
     setCat(e.target.value.split(","));
   };
 
+  //* creating a unique name to overcome replacing error it replaces same name things
   const handleClick = (e) => {
     e.preventDefault();
     const fileName = new Date().getTime() + file.name;
@@ -32,15 +35,9 @@ export default function NewProduct() {
     const storageRef = ref(storage, fileName);
     const uploadTask = uploadBytesResumable(storageRef, file);
 
-    // Register three observers:
-    // 1. 'state_changed' observer, called any time the state changes
-    // 2. Error observer, called on failure
-    // 3. Completion observer, called on successful completion
     uploadTask.on(
       "state_changed",
       (snapshot) => {
-        // Observe state change events such as progress, pause, and resume
-        // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
         const progress =
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         console.log("Upload is " + progress + "% done");
@@ -58,11 +55,10 @@ export default function NewProduct() {
         // Handle unsuccessful uploads
       },
       () => {
-        // Handle successful uploads on complete
-        // For instance, get the download URL: https://firebasestorage.googleapis.com/...
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          // console.log({ ...inputs, img: downloadURL, categories: cat });
           const product = { ...inputs, img: downloadURL, categories: cat };
-          // addProduct(product, dispatch);
+          addProduct(product, dispatch);
         });
       }
     );
@@ -85,7 +81,7 @@ export default function NewProduct() {
           <input
             name="title"
             type="text"
-            placeholder="Apple Airpods"
+            placeholder="H&M Hoodies"
             onChange={handleChange}
           />
         </div>

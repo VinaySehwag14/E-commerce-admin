@@ -48,11 +48,12 @@ export const deleteProduct = async (dispatch, id) => {
   }
 };
 
-export const updateProduct = async (id, product, dispatch) => {
+export const updateProduct = async (id, data, dispatch) => {
   dispatch(updateProductStart());
   try {
-    // update
-    dispatch(updateProductSuccess({ id, product }));
+    //* update
+    await userRequest.put("/products/" + id, data);
+    dispatch(updateProductSuccess({ id, product: data }));
   } catch (err) {
     dispatch(updateProductFailure());
   }
@@ -60,6 +61,7 @@ export const updateProduct = async (id, product, dispatch) => {
 export const addProduct = async (product, dispatch) => {
   dispatch(addProductStart());
   try {
+    //* firebase already sending object thats why we don't have to convert product to object
     const res = await userRequest.post(`/products`, product);
     dispatch(addProductSuccess(res.data));
   } catch (err) {
